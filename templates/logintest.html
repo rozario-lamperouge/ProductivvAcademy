@@ -1,0 +1,134 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Productivv Academy | Login Form</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'clever/img/core-img/top.png' %}">
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'login/fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'clever/img/core-img/top.png' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'login/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'clever/style.css' %}">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZRFBT3X7N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EZRFBT3X7N');
+    </script>
+
+</head>
+<body>
+    <!-- Preloader -->
+    <!-- <div id="preloader">
+        <div class="spinner"></div>
+    </div> -->
+
+    <!-- ##### Header Area Start ##### -->
+    {% include 'headermini.html' %}
+    <!-- ##### Header Area End ##### -->
+
+    <div class="main">
+        <!-- Login  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="{% static 'login/images/signin-image.jpg' %}" alt="sing up image"></figure>
+                        {% if request.GET.next %}
+                        <a href='/register/?next={{ request.GET.next }}'>Create an account</a>
+                        {% else %}
+                        <a href='/register/'>Create an account</a>
+                        {% endif %}
+
+                    </div>
+
+                <div class="signin-form">
+                    <h2 class="form-title"><strong><strong>Login</strong></strong></h2>
+
+                    {% if msg %}  
+                    <div class="alert alert-info" role="alert">
+                      {% for key,error in login_form.errors.items %}
+                        {{ error }}
+                        {% endfor %}
+                        <strong><strong>{{ msg }}</strong></strong>
+                    </div>
+                    {% else %}
+
+                    {% endif %}
+
+                    <form action="/login/" method="post" autocomplete="off" class="register-form" id="login-form">
+
+                    <div class="form-group">
+                    <input type='hidden' name='csrfmiddlewaretoken'
+                       value='mymQDzHWl2REXIfPMg2mJaLqDfaS1sD5'/>
+                       <div class="form-group {% if login_form.errors.username %}errorput{% endif %}">
+                            <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input name="username" id="account_l" type="text"
+                           placeholder="Phone number / email"/>
+                        </div>
+                    
+                    </div>
+
+                        <div class="form-group marb8{% if login_form.errors.password %}errorput{% endif %}">
+                            <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                            <input name="password" id="password_l" type="password" placeholder="please enter your password"/>
+                        </div>
+                       
+                    <div class="auto-box marb38">
+
+                        <a class="fr" href="/forget">forget password？</a>
+                    </div>
+                    {% if request.GET.next %}
+                    <input type="hidden" name="next" value="{{request.GET.next}}">
+                    {% endif %}
+                        <div class="form-group form-button">
+                        <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                    <input type='hidden' name='csrfmiddlewaretoken'
+                           value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy'/>
+                    {% csrf_token %}
+                        </div>
+                    </form>
+<!--                     <div class="social-login">
+                        <span class="social-label">Or login with</span>
+                        <ul class="socials">
+                            <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                            <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+                            <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                        </ul>
+                    </div> -->
+                    <br>
+                    {% if request.GET.next %}
+                    <a href='/register/?next={{ request.GET.next }}'>Create an account</a>
+                    {% else %}
+                    <a href='/register/'>Create an account</a>
+                    {% endif %}
+                </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- ##### Footer Area Start ##### -->
+    {% include 'footer.html' %}
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- JS -->
+    <script src="{% static 'login/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'login/js/main.js' %}"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

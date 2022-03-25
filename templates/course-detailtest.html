@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Productivv Academy | Course Details</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'clever/img/core-img/top.png' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'clever/style.css' %}">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZRFBT3X7N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EZRFBT3X7N');
+    </script>
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+   {% include 'header.html' %}
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area">
+        <!-- Breadcumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Courses</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ course.category }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ course.name }}</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Single Course Intro Start ##### -->
+    <div class="single-course-intro d-flex align-items-center justify-content-center" style="background-image: url({% static 'clever/img/bg-img/bg1.jpg' %});">
+        <!-- Content -->
+        <div class="single-course-intro-content text-center">
+            <!-- Ratings -->
+            <div class="ratings">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+            </div>
+            <h3>{{ course.name }}</h3>
+            <div class="meta d-flex align-items-center justify-content-center">
+                <a href="#">{{ course.teacher }}</a>
+                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                <a href="#">{{ course.category }}</a>
+            </div>
+            <div class="price">{{course.price}} ₹</div>
+        </div>
+    </div>
+    <!-- ##### Single Course Intro End ##### -->
+
+    <!-- ##### Courses Content Start ##### -->
+    <div class="single-course-content section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <div class="course--content">
+
+                        <div class="clever-tabs-content">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a style="color:rgba(0, 0, 0, 1)" class="nav-link active" id="tab--1" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="false">Description</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a style="color:rgba(0, 0, 0, 1)" class="nav-link" id="tab--2" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="true">FAQ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a style="color:rgba(0, 0, 0, 1)" class="nav-link" id="tab--3" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="true">Reviews</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content" id="myTabContent">
+                                <!-- Tab Text -->
+                                <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab--1">
+                                    <div class="clever-description">
+
+                                        <!-- About Course -->
+                                        <div class="about-course mb-30">
+                                            <h4><strong>About this course</strong></h4>
+                                            <p>{{ course.detail | safe }}</p>
+                                        </div>
+                                        <br>
+                                        <h4><strong>Curriculum</strong></h4>
+                                        <br>
+                                        <div class="clever-curriculum">
+                                        <!-- Curriculum Level -->
+                                        <div class="curriculum-level mb-30">
+                                            <ul class="curriculum-list">
+                                                {% for lesson in course_lessons %}
+                                                <li><i class="fa fa-file" aria-hidden="true"></i> <strong>{{ lesson.name }}</strong>
+                                                    <ul>
+                                                        {% for video in lesson.video_set.get_queryset  %}
+                                                        <li>
+                                                            <span><i class="fa fa-video-camera" aria-hidden="true"></i> Video: <span>{{ video.name }}</span></span>
+                                                            <span><i class="fa fa-clock-o" aria-hidden="true"></i> {{ video.learning_time }} minutes</span>
+                                                        </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                        
+                                    </div>
+                                </div>
+
+                                <!-- Tab Text -->
+                                <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab--2">
+                                    <div class="clever-curriculum">
+                                        <!-- FAQ -->
+                                        <div class="clever-faqs">
+                                            <h4><strong>FAQs</strong></h4>
+
+                                            <div class="accordions" id="accordion" role="tablist" aria-multiselectable="true">
+
+                                                <!-- Single Accordian Area -->
+                                                <div class="panel single-accordion">
+                                                    <h6><a role="button" class="" aria-expanded="true" aria-controls="collapseOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Do i get a Certificate?
+                                                    <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                    <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                    </a></h6>
+                                                    <div id="collapseOne" class="accordion-content collapse show">
+                                                        <p>YES, once you complete the course you will be provided with a course completion certificate signed by the course instructor.</p>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Single Accordian Area -->
+                                                <div class="panel single-accordion">
+                                                    <h6>
+                                                        <a role="button" class="collapsed" aria-expanded="true" aria-controls="collapseTwo" data-parent="#accordion" data-toggle="collapse" href="#collapseTwo">How can i clarify my doubts and queries regarding the course?
+                                                        <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                        <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                        </a>
+                                                    </h6>
+                                                    <div id="collapseTwo" class="accordion-content collapse">
+                                                        <p>you will be added to our community in whatsapp once you enroll the course, there you can ask your doubts to the instructor and fellow community members.</p>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Single Accordian Area -->
+                                                <div class="panel single-accordion">
+                                                    <h6>
+                                                        <a role="button" aria-expanded="true" aria-controls="collapseThree" class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseThree">What background knowledge do I need to have?
+                                                        <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                        <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                        </a>
+                                                    </h6>
+                                                    <div id="collapseThree" class="accordion-content collapse">
+                                                        <p>This course is designed for beginners to easily understand, so you wont need any previous knowledge</p>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Single Accordian Area -->
+                                                <div class="panel single-accordion">
+                                                    <h6>
+                                                        <a role="button" aria-expanded="true" aria-controls="collapseFour" class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseFour">The payment is not working, what should i do?
+                                                        <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                        <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                        </a>
+                                                    </h6>
+                                                    <div id="collapseFour" class="accordion-content collapse">
+                                                        <p>you can contact us at +91 9176555773 or productivvacademy@gmail.com and we will provide you a different payment option.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+
+                                <!-- Tab Text -->
+                                <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab--3">
+                                    <div class="clever-review">
+
+                                        <!-- About Review -->
+                                        <div class="about-review mb-30">
+                                            <h4><strong>Reviews</strong></h4>
+                                            <p>Here you can see the average review of the course from different people who took the course</p>
+                                        </div>
+
+                                        <!-- Ratings -->
+                                        <div class="clever-ratings d-flex align-items-center mb-30">
+
+                                            <div class="total-ratings text-center d-flex align-items-center justify-content-center">
+                                                <div class="ratings-text">
+                                                    <h2>4.5</h2>
+                                                    <div class="ratings--">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                                    </div>
+                                                    <span>Rated 5 out of 3 Ratings</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="rating-viewer">
+                                                <!-- Rating -->
+                                                <div class="single-rating mb-15 d-flex align-items-center">
+                                                    <span>5 STARS</span>
+                                                    <div class="progress">
+                                                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <span>80%</span>
+                                                </div>
+                                                <!-- Rating -->
+                                                <div class="single-rating mb-15 d-flex align-items-center">
+                                                    <span>4 STARS</span>
+                                                    <div class="progress">
+                                                        <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <span>20%</span>
+                                                </div>
+                                                <!-- Rating -->
+                                                <div class="single-rating mb-15 d-flex align-items-center">
+                                                    <span>3 STARS</span>
+                                                    <div class="progress">
+                                                        <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <span>0%</span>
+                                                </div>
+                                                <!-- Rating -->
+                                                <div class="single-rating mb-15 d-flex align-items-center">
+                                                    <span>2 STARS</span>
+                                                    <div class="progress">
+                                                        <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <span>0%</span>
+                                                </div>
+                                                <!-- Rating -->
+                                                <div class="single-rating mb-15 d-flex align-items-center">
+                                                    <span>1 STARS</span>
+                                                    <div class="progress">
+                                                        <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <span>0%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 
+                <div class="col-12 col-lg-4">
+                    {% if msg %}
+                    <div class="alert alert-info" role="alert">
+                        <strong><strong>{{msg}}</strong></strong>
+                    </div>
+                    {% else %}
+
+                    {% endif %}
+                    <div class="course-sidebar">
+                        <!-- Buy Course -->
+                        {% ifequal has_attended True %}
+                        <a href="{% url 'courses:video_play' firstvid.id %}" class="btn clever-btn mb-30 w-100">Enter Course</a>
+                        {% else %}
+                        <a href="{% url 'courses:course_pay' course.id %}" class="btn clever-btn mb-30 w-100">Buy Course - {{price}}₹</a>
+                        {% endifequal %}
+
+                        <!-- Widget -->
+                        <div class="sidebar-widget">
+                            <h4><strong>Course Features</strong></h4>
+                            <ul style="color: rgba(0, 0, 0, 0.6)" class="features-list">
+                                <li>
+                                    <h6 style="color: rgba(0, 0, 0, 0.6)"><i style="color: rgba(0, 0, 0, 0.6)" class="fa fa-clock-o"></i>Duration</h6>
+                                    <h6>{{ course.learning_time }} Minutes</h6>
+                                </li>
+                                <li>
+                                    <h6 style="color: rgba(0, 0, 0, 0.6)"><i style="color: rgba(0, 0, 0, 0.6)" class="fa fa-bell" aria-hidden="true"></i> Chapters</h6>
+                                    <h6>{{ course.get_chapter_nums }}</h6>
+                                </li>
+                                <li>
+                                    <h6 style="color: rgba(0, 0, 0, 0.6)"><i style="color: rgba(0, 0, 0, 0.6)" class="fa fa-file" aria-hidden="true"></i> Category</h6>
+                                    <h6>{{ course.category }}</h6>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Widget -->
+                        <div class="sidebar-widget">
+                            <h4><strong>Certification</strong></h4>
+                            <img src="{% static 'clever/img/bg-img/cer.png' %}" alt="">
+                        </div>
+
+                        <!-- Widget -->
+                        <div class="sidebar-widget">
+                            <h4><strong>You may like</strong></h4>
+
+                            <!-- Single Courses -->
+                            {% for course in related_courses %}
+                            <div class="single--courses d-flex align-items-center">
+                                <a href="{% url 'courses:course_detail' course.id %}">
+                                <div class="thumb">
+                                    <img src="https://drive.google.com/uc?export=view&id={{ course.before_diving_in }}" alt="">
+                                </div>
+                                </a>
+                                <div class="content">
+                                    <a href="{% url 'courses:course_detail' course.id %}">
+                                    <h5>{{ course.name }}</h5>
+                                    </a>
+                                    <h6>{{course.price}} ₹</h6>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Courses Content End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    {% include 'footer.html' %}
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'clever/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'clever/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'clever/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'clever/js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'clever/js/active.js' %}"></script>
+</body>
+
+</html>

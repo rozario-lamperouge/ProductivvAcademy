@@ -1,0 +1,102 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Productivv Academy | Reset Password</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'login/fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'clever/img/core-img/top.png' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'login/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'clever/style.css' %}">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZRFBT3X7N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EZRFBT3X7N');
+    </script>
+
+</head>
+<body>
+    <!-- Preloader -->
+    <!-- <div id="preloader">
+        <div class="spinner"></div>
+    </div> -->
+
+    <!-- ##### Header Area Start ##### -->
+    {% include 'header.html' %}
+    <!-- ##### Header Area End ##### -->
+
+    <div class="main">
+        <!-- Login  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="{% static 'login/images/signin-image.jpg' %}" alt="sing up image"></figure>
+                        <a href="{% url 'register' %}" class="signup-image-link">Create an account</a>
+
+                    </div>
+
+                <div class="signin-form">
+                    <h2 class="form-title"><strong><strong>Reset Password</strong></strong></h2>
+
+                    {% if msg %}  
+                    <div class="alert alert-info" role="alert">
+                      {% for key,error in forget_form.errors.items %}
+                        {{ error }}
+                        {% endfor %}
+                        <strong><strong>{{ msg }}</strong></strong>
+                    </div>
+                    {% else %}
+
+                    {% endif %}
+
+                    {% if mailmsg %}  
+                    <div class="alert alert-info" role="alert">
+                        <strong><strong>{{ mailmsg }}</strong></strong>
+                    </div>
+                    {% else %}
+            <div class="fl form-box">
+                <form id="jsFindPwdForm" method="post" action="{% url 'forget_pwd' %}" autocomplete="off">
+                    <div class="form-group marb20 {% if forget_form.errors.email %}errorput{% endif %}">
+                        <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                        <input type="text" id="account" name="email" value="{% if forget_form.email.value %}{{ forget_form.email.value }}{% endif %}" placeholder="Mailbox" />
+                    </div>
+                    <h6><strong>Verification: </strong></h6>
+                    <div class="form-group captcha1 marb38 {% if forget_form.errors.captcha %}errorput{% endif %}">
+                        {{ forget_form.captcha }}
+                    </div>
+                    <input type="hidden" name="sms_type" value="1">
+                    <input class="form-submit" id="jsFindPwdBtn" type="submit" value="Submit" />
+                    {% csrf_token %}
+                </form>
+            </div>
+            {% endif %}
+            <p class="form-p" style="bottom:40px;">You can also<a href="/login"> [Direct Login]</a></p>
+                </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- ##### Footer Area Start ##### -->
+    {% include 'footer.html' %}
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- JS -->
+    <script src="{% static 'login/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'login/js/main.js' %}"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Productivv Academy | Home</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'clever/img/core-img/top.png' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'clever/style.css' %}">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZRFBT3X7N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EZRFBT3X7N');
+    </script>
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    {% include 'header.html' %}
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area bg-img bg-overlay-2by5" style="background-image: url({% static 'clever/img/bg-img/bg1.jpg' %});">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <!-- Hero Content -->
+                    <div class="hero-content text-center">
+                        <h2>Let's Study Together</h2>
+                        <a href="/course/list" class="btn clever-btn">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Hero Area End ##### -->
+
+    <!-- ##### Cool Facts Area Start ##### -->
+    <section class="cool-facts-area section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <!-- Single Cool Facts Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="250ms">
+                        <div class="icon">
+                            <img src="{% static 'clever/img/core-img/docs.png' %}" alt="">
+                        </div>
+                        <h2><strong><strong><span class="counter">300</span>+</strong></strong></h2>
+                        <h5><strong><strong>Lessons</strong></strong></h5>
+                    </div>
+                </div>
+
+                <!-- Single Cool Facts Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="500ms">
+                        <div class="icon">
+                            <img src="{% static 'clever/img/core-img/star.png' %}" alt="">
+                        </div>
+                        <h2><strong><strong><span class="counter">10</span>+</strong></strong></h2>
+                        <h5><strong><strong>Courses</strong></strong></h5>
+                    </div>
+                </div>
+
+                <!-- Single Cool Facts Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="750ms">
+                        <div class="icon">
+                            <img src="{% static 'clever/img/core-img/events.png' %}" alt="">
+                        </div>
+                        <h2><strong><strong><span class="counter">1000</span>+</strong></strong></h2>
+                        <h5><strong><strong>Students Trained</strong></strong></h5>
+                    </div>
+                </div>
+
+                <!-- Single Cool Facts Area -->
+                <!-- <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="1000ms">
+                        <div class="icon">
+                            <img src="{% static 'clever/img/core-img/earth.png' %}" alt="">
+                        </div>
+                        <h2><strong><strong><span class="counter">1912</span></strong></strong></h2>
+                        <h5><strong><strong>Success Stories</strong></strong></h5>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+    <!-- ##### Cool Facts Area End ##### -->
+
+    <!-- ##### Popular Courses Start ##### -->
+    <section class="popular-courses-area section-padding-100-0" style="background-image: url({% static 'clever/img/core-img/texture.png' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3><strong><strong>Popular Online Courses</strong></strong></h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Single Popular Course -->
+                {% for course in courses %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="250ms">
+                        <a href="{% url 'courses:course_detail' course.id %}">
+                        <img width="233" height="190"
+                                         src="https://drive.google.com/uc?export=view&id={{ course.before_diving_in }}"/>
+                        </a>
+                        <!-- Course Content -->
+                        <div class="course-content">
+                        <a href="{% url 'courses:course_detail' course.id %}">
+                            <h4><strong><strong>{{ course.name }}</strong></strong></h4>
+                        </a>
+                            <div class="meta d-flex align-items-center">
+                                <a href="#">{{course.teacher}}</a>
+                                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                <a href="#">{{course.category}}</a>
+                            </div>
+                            <p>{{course.desc}}</p>
+                        </div>
+                        <!-- Seat Rating Fee -->
+                        <div class="seat-rating-fee d-flex justify-content-between">
+                            <div class="seat-rating h-100 d-flex align-items-center">
+                                <div style="color: rgba(0, 0, 0, 0.5)" class="seat">
+                                    <i style="color: rgba(0, 0, 0, 0.5)" class="fa fa-user" aria-hidden="true"></i> {{ course.students }}
+                                </div>
+                                <div class="rating">
+                                    <i style="color: rgba(0, 0, 0, 0.5)" class="fa fa-clock-o" aria-hidden="true"></i> {% widthratio course.learning_time 60 1 %} Hours
+                                </div>
+                            </div>
+                            <div class="course-fee h-100">
+                                <a href="#" class="free">{{course.price}}₹</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col-12">
+                        <div class="load-more text-center">
+                                <a class="btn clever-btn btn-1" href="/course/list/">Load More Courses</a>
+                        </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </section>
+    <!-- ##### Popular Courses End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+{% include 'footer.html' %}
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'clever/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'clever/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'clever/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'clever/js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'clever/js/active.js' %}"></script>
+</body>
+
+</html>

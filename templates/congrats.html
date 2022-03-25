@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Productivv Academy | Course Details</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'clever/img/core-img/top.png' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'clever/style.css' %}">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZRFBT3X7N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EZRFBT3X7N');
+    </script>
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+   {% include 'header.html' %}
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Single Course Intro Start ##### -->
+    <div class="single-course-intro d-flex align-items-center justify-content-center" style="background-image: url({% static 'clever/img/bg-img/bg1.jpg' %});">
+        <!-- Content -->
+        <div class="single-course-intro-content text-center">
+            <!-- Ratings -->
+            <div class="ratings">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+            </div>
+            <h3>{{ course.name }}</h3>
+            <div class="meta d-flex align-items-center justify-content-center">
+                <a href="#">{{ course.teacher }}</a>
+                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                <a href="#">{{ course.category }}</a>
+            </div>
+            <div class="price">{{course.price}} ₹</div>
+        </div>
+    </div>
+    <!-- ##### Single Course Intro End ##### -->
+
+    <!-- ##### Courses Content Start ##### -->
+    <div class="single-course-content section-padding-100">
+        <div class="container">
+                    {% if msg %}
+                    <div class="alert alert-info" role="alert">
+                        <strong><strong>{{msg}}</strong></strong>
+                    </div>
+                    {% else %}
+
+                    {% endif %}
+                    <div class="course-sidebar">
+                        <!-- Buy Course -->
+                        <a href="{% url 'courses:video_play' firstvid.id %}" class="btn clever-btn mb-30 w-100">Go To Course</a>
+                    </div>
+                </div>
+    </div>
+    <!-- ##### Courses Content End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    {% include 'footer.html' %}
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'clever/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'clever/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'clever/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'clever/js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'clever/js/active.js' %}"></script>
+</body>
+
+</html>

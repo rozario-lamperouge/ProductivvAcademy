@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Merchant Check Out Page</title>
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZRFBT3X7N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EZRFBT3X7N');
+    </script>
+    </head>
+    <body>
+        <h1>Please do not refresh this page...</h1>
+        <form method="post" action="{% url 'courses:course_pay' course.id %}" name="f1">
+        </form>
+    </body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Productivv Academy | Course Content</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'clever/img/core-img/top.png' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'clever/style.css' %}">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZRFBT3X7N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EZRFBT3X7N');
+    </script>
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    {% include 'header.html' %}
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area">
+        <!-- Breadcumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Courses</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Art &amp; Design</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Catagory Area Start ##### -->
+    <div class="clever-catagory blog-details bg-img d-flex align-items-center justify-content-center p-3 height-400" style="background-image: url({% static 'clever/img/blog-img/7.jpg' %});">
+        <div class="blog-details-headline">
+            <h3>{{course.name}}</h3>
+            <div class="meta d-flex align-items-center justify-content-center">
+                <a href="#">{{course.teacher}}</a>
+                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                <a href="#">{{course.category}}</a>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Catagory Area End ##### -->
+                    <!-- <div class="row">
+                    <div class="col-12 col-lg-8">
+                    <div class="course--content"> -->
+
+                    <!-- <div class="col-12 col-lg-4">
+                    <div class="course-sidebar"> -->
+
+
+    <!-- ##### Regular Page Area Start ##### -->
+    <div class="regular-page-area section-padding-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="course--content">
+                        <h4><strong><strong>{{ video.name }}</strong></strong></h4>
+                        <br>
+                        <div class="embed-youtube">
+                            {{video.url|safe}}
+                        </div>
+                        <!-- <div class="embed-youtube">
+                        <iframe src="//www.youtube.com/embed/aCOsM-4NEKs" width="750" height="563"></iframe>
+                        </div> -->
+
+                        <br>
+                        <div class="load-more text-center">
+                        
+                        <a href="/course/video/{{Previous.id}}" class="btn clever-btn">Previous</a>
+                        {% if finish %}
+                        <a href="/course/certificate/{{course.id}}" class="btn clever-btn">{{finish}}</a>
+                        {% else %}
+                        <a href="/course/video/{{Next.id}}" class="btn clever-btn">Next</a>
+                        {% endif %}
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4">
+                    <div class="course-sidebar">
+
+                    <div class="clever-curriculum">
+                    <div class="curriculum-level mb-30">
+                    <ul class="curriculum-list">
+                        <h3><strong><strong>{{course}}</strong></strong></h3>
+                        <br>
+                        {% for lesson in course_lessons %}
+                        <li><i class="fa fa-file" aria-hidden="true"></i> <strong><strong>{{ lesson.name }}</strong></strong>
+                            <ul>
+                                {% for video in lesson.video_set.get_queryset  %}
+                                <li>
+                                    <a href="{% url 'courses:video_play' video.id %}" class="J-media-item studyvideo">
+                                    <span><i class="fa fa-video-camera" aria-hidden="true"></i> Video: <span>{{ video.name }}</span></span>
+                                    <span><i class="fa fa-clock-o" aria-hidden="true"></i> {{ video.learning_time }} minutes</span>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Regular Page Area End ##### -->
+
+    <!-- ##### Blog Details Content ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    {% include 'footer.html' %}
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'clever/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'clever/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'clever/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'clever/js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'clever/js/active.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Productivv Academy | My Courses</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'clever/img/core-img/top.png' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'clever/style.css' %}">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZRFBT3X7N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EZRFBT3X7N');
+    </script>
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    {% include 'header.html' %}
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area">
+        <!-- Breadcumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Courses</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Art &amp; Design</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Catagory ##### -->
+    <div class="clever-catagory bg-img d-flex align-items-center justify-content-center p-3" style="background-image: url({% static 'clever/img/bg-img/bg2.jpg' %});">
+        <h3><strong><strong>MY COURSES</strong></strong></h3>
+    </div>
+
+    <!-- ##### Popular Course Area Start ##### -->
+    <section class="popular-courses-area section-padding-100">
+        <div class="container">
+            <div class="row">
+                <!-- Single Popular Course -->
+                {% for course in my_courses %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="250ms">
+                        <a href="{% url 'courses:course_detail' course.course.id %}">
+                        <img width="233" height="190"
+                                         src="https://drive.google.com/uc?export=view&id={{ course.course.before_diving_in }}"/>
+                        </a>
+                        <!-- Course Content -->
+                        <div class="course-content">
+                            <a href="{% url 'courses:course_detail' course.course.id %}">
+                            <h4><strong><strong>{{ course.course.name }}</strong></strong></h4>
+                            </a>
+                            <div class="meta d-flex align-items-center">
+                                <a href="#">{{course.course.teacher}}</a>
+                                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                <a href="#">{{course.course.category}}</a>
+                            </div>
+                            <p>{{course.course.desc}}</p>
+                        </div>
+                        <!-- Seat Rating Fee -->
+                        <div class="seat-rating-fee d-flex justify-content-between">
+                            <div class="seat-rating h-100 d-flex align-items-center">
+                                <div class="seat">
+                                    <i class="fa fa-user" aria-hidden="true"></i> {{ course.course.students }}
+                                </div>
+                                <div class="rating">
+                                    <i class="fa fa-star" aria-hidden="true"></i> {{ course.course.fav_nums }}
+                                </div>
+                            </div>
+                            <div class="course-fee h-100">
+                                <a href="#" class="free">Free</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+                <div class="row">
+                <div class="col-12">
+                        <div class="load-more text-center wow fadeInUp" data-wow-delay="1000ms">
+                        <ul class="pagelist">
+                            {% if courses.has_previous %}
+                                <li class="btn clever-btn btn-1"><a href="?{{ courses.previous_page_number.querystring }}">Previous</a></li>
+                            {% endif %}
+
+                            {% for page in courses.pages %}
+                                {% if page %}
+                                    {# If it is the current page #}
+                                    {% ifequal page courses.number %}
+                                        <li class="btn clever-btn btn-2"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                                    {% else %}
+                                        <li><a href="?{{ page.querystring }}" class="btn clever-btn btn-2">{{ page }}</a></li>
+                                    {% endifequal %}
+                                {% else %}
+                                    <li class="btn clever-btn btn-2"><a href="">...</a></li>
+                                {% endif %}
+                            {% endfor %}
+
+                             {% if courses.has_next %}
+                                 <li class="btn clever-btn btn-1"><a href="?{{ courses.next_page_number.querystring }}">Next Page</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    <!-- ##### Popular Course Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    {% include 'footer.html' %}
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'clever/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'clever/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'clever/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'clever/js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'clever/js/active.js' %}"></script>
+</body>
+
+</html>

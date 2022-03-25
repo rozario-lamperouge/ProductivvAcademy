@@ -1,0 +1,101 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Productivv Academy | Sign Up Form</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'clever/img/core-img/top.png' %}">
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'login/fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'login/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'clever/style.css' %}">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZRFBT3X7N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EZRFBT3X7N');
+    </script>
+</head>
+<body>
+    <!-- ##### Header Area Start ##### -->
+    {% include 'headermini.html' %}
+    <!-- ##### Header Area End ##### -->
+
+    <div class="main">
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title"><strong><strong>Sign up</strong></strong></h2>
+
+                         {% if msg %}  
+                    <div class="alert alert-info" role="alert">
+                      {% for key,error in register_form.errors.items %}
+                        {{ error }}
+                        {% endfor %}
+                        <strong><strong>{{ msg }}</strong></strong>
+                    </div>
+                    {% else %}
+
+                    {% endif %}
+                        
+                <form method="POST" class="register-form" id="register-form">
+                <div class="tab-form">
+                    <form id="email_register_form" method="post"
+                          action="{% url 'register' %}" autocomplete="off">
+                    <input type='hidden' name='csrfmiddlewaretoken'
+                               value='gTZljXgnpvxn0fKZ1XkWrM1PrCGSjiCZ'/>
+                    <div class="form-group marb20 {% if register_form.errors.email %}errorput{% endif %}">
+                    <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                    <input type="text" id="id_email" name="email" value="{% if register_form.email.value %}{{ register_form.email.value }}{% endif %}" placeholder="Please enter your e-mail address"/>
+                        </div>
+                        <div class="form-group marb8 {% if register_form.errors.password %}errorput{% endif %}">
+                            <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                            <input type="password" id="id_password" name="password" value="{% if register_form.password.value %}{{ register_form.password.value }}{% endif %}" placeholder="please enter 6-20 chars"/>
+                        </div>
+                        <h6><strong>Verification: </strong></h6>
+                        <div class="form-group marb8 captcha1 {% if register_form.errors.captcha %}errorput{% endif %}">
+                            {{ register_form.captcha }}
+                        </div>
+                        <div class="auto-box marb8">
+                        </div>
+                        <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                                <!-- <input class="btn btn-green" id="jsEmailRegBtn"
+                               type="submit" value="Sign Up"/> -->
+                               {% csrf_token %}
+                            </div>
+                    </form>
+                </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="{% static 'login/images/signup-image.jpg' %}" alt="sing up image"></figure>
+                        <a href="{% url 'login' %}" class="signup-image-link">I am already member</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- ##### Footer Area Start ##### -->
+    {% include 'footer.html' %}
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- JS -->
+    <script src="{% static 'login/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'login/js/main.js' %}"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

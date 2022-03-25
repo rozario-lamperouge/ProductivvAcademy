@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Productivv Academy | Certificate</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'clever/img/core-img/top.png' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'clever/style.css' %}">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZRFBT3X7N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EZRFBT3X7N');
+    </script>
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    {% include 'header.html' %}
+    <!-- ##### Header Area End ##### -->
+    <!-- ##### Regular Page Area Start ##### -->
+    <div class="regular-page-area section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-content">
+                        <h4><strong>Congrats on Completing the Course!</strong></h4>
+                        {% if image %}
+                        <p>{% load static %}
+						<img src="{% static imgpath %}" width="1000" height="600">
+
+						<a href="{% static imgpath %}" download>
+						  Download
+						</a></p>
+						{% else %}
+						<p>
+							The Certificate will be sent to your registered mail id within the next 24 to 48 hours.
+                            <br>
+                            kindly check your spam folder if you dont see it in your inbox.
+							<br>
+                            If you still dont find your certificate, you can contact us in mail or whatsapp
+                            <br>
+                            <br>
+							mail : richardrozario.a@gmail.com
+                            <br>
+							whatsapp : +91 91765 55773
+						</p>
+						{% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Regular Page Area End ##### -->
+
+<!-- ##### Footer Area Start ##### -->
+    {% include 'footer.html' %}
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'clever/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'clever/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'clever/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'clever/js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'clever/js/active.js' %}"></script>
+</body>
+
+</html>
