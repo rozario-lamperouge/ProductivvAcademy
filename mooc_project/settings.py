@@ -116,7 +116,7 @@ else:
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'productivvacademy',
         'USER': 'richard',
-        'PASSWORD': 'Lamperouge@123',
+        'PASSWORD': 'RichardTheGreat@uzdxn2wjj6',
         'HOST': 'localhost',
         'PORT': '',
         }
