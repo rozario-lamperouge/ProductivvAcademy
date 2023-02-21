@@ -114,7 +114,7 @@ else:
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'productivvacademy',
+        'NAME': 'productivv',
         'USER': 'richard',
         'PASSWORD': 'RichardTheGreat@uzdxn2wjj6',
         'HOST': 'localhost',
