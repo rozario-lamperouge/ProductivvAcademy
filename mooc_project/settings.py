@@ -27,7 +27,7 @@ SECRET_KEY = 't0!344w2guwb%ro5-1w*q6c6&@ufx)c!34#8fixz!*j99o%vyy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.environ.get('DEBUG') == 'True')
 
-ALLOWED_HOSTS = ['127.0.0.1','159.223.14.73','www.productivvacademy.com','.productivvacademy.com']
+ALLOWED_HOSTS = ['127.0.0.1','','www.productivvacademy.com','.productivvacademy.com']
 # ALLOWED_HOSTS = ['127.0.0.1']  # allow all access
 
 AUTHENTICATION_BACKENDS = (
