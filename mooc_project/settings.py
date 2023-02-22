@@ -100,27 +100,27 @@ WSGI_APPLICATION = 'mooc_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'mydatabase3',
-            'USER': 'root',
-            'PASSWORD': '',
-            'HOST': 'localhost',
-        }
+# if DEBUG:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': 'mydatabase3',
+#             'USER': 'root',
+#             'PASSWORD': '',
+#             'HOST': 'localhost',
+#         }
+#     }
+# else:
+DATABASES = {
+'default': {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'productivv',
+    'USER': 'richard',
+    'PASSWORD': 'RichardTheGreat@uzdxn2wjj6',
+    'HOST': 'localhost',
+    'PORT': '',
     }
-else:
-    DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'productivv',
-        'USER': 'richard',
-        'PASSWORD': 'RichardTheGreat@uzdxn2wjj6',
-        'HOST': 'localhost',
-        'PORT': '',
-        }
-    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
