@@ -25,7 +25,8 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 SECRET_KEY = 't0!344w2guwb%ro5-1w*q6c6&@ufx)c!34#8fixz!*j99o%vyy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.environ.get('DEBUG') == 'True')
+DEBUG = True
+# DEBUG = (os.environ.get('DEBUG') == 'True')
 
 ALLOWED_HOSTS = ['127.0.0.1','','www.productivvacademy.com','.productivvacademy.com']
 # ALLOWED_HOSTS = ['127.0.0.1']  # allow all access
@@ -99,27 +100,27 @@ WSGI_APPLICATION = 'mooc_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'mydatabase3',
-            'USER': 'root',
-            'PASSWORD': '',
-            'HOST': 'localhost',
-        }
+# if DEBUG:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': 'mydatabase3',
+#             'USER': 'root',
+#             'PASSWORD': '',
+#             'HOST': 'localhost',
+#         }
+#     }
+# else:
+DATABASES = {
+'default': {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'productivv',
+    'USER': 'richard',
+    'PASSWORD': 'RichardTheGreat@uzdxn2wjj6',
+    'HOST': 'localhost',
+    'PORT': '',
     }
-else:
-    DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'productivv',
-        'USER': 'richard',
-        'PASSWORD': 'RichardTheGreat@uzdxn2wjj6',
-        'HOST': 'localhost',
-        'PORT': '',
-        }
-    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
